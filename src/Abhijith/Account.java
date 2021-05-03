@@ -16,12 +16,12 @@ public class Account
 		Limit = thresholdBalance;
 	}
 	
-	public Account(int defaultBalance, int thresholdBalance, int Idnum) {
+/*	public Account(int defaultBalance, int thresholdBalance, int Idnum) {
 		System.out.println("The Balance in your Account Id"+" "+Idnum+" "+"is"+" "+defaultBalance);
 		Total = defaultBalance;
 		Limit = thresholdBalance;
 	}
-	
+*/	
 // Function for Debit
 	public void debit(int num1)
 	{
@@ -60,7 +60,7 @@ public class Account
 	public static void main(String[] args) 
 	{
 		Account acc  = new Account(100000,1234);
-		Account acc2 = new Account(50000,100000,1234);
+		//Account acc2 = new Account(50000,100000,12345);
 
 		while(true) {
 		System.out.println("Chose an operation");
