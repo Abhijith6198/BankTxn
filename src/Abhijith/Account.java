@@ -72,22 +72,28 @@ public class Account
 		//Account acc = new Account(100000,1234);
 		
 		int test=scannerObj.nextInt();
-
-		if(test==1) {
+		
+		switch(test){
+		case 1:
+			
 			System.out.println("Please enter the amount to be credited:");
 			int creditAmount=scannerObj.nextInt();
 			acc.credit(creditAmount);
+			break;
 			
-		}
-		else if(test==2) {
+		case 2:
+			
 			System.out.println("Please enter the amount to be debited:");
 			int debitAmount=scannerObj.nextInt();
 			acc.debit(debitAmount);
-		}
-		else {
+			break;
+					
+		default:
+		
 			acc.showBalance();
+		}
 		}
 	}
   }
-}
+
 	
