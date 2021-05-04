@@ -6,7 +6,6 @@ public class Account
 {
 	public String Name;
 	int Id;
-	//int Balance;
 	int Total;
 	int Limit;
 	
@@ -16,17 +15,10 @@ public class Account
 		System.out.println("The Balance in your Account Id"+" "+Name+" "+"is"+" "+Total);
 		Limit = 100000;
 	}
-	
-/*	public Account(int defaultBalance, int thresholdBalance, int Idnum) {
-		System.out.println("The Balance in your Account Id"+" "+Idnum+" "+"is"+" "+defaultBalance);
-		Total = defaultBalance;
-		Limit = thresholdBalance;
-	}
-*/	
+		
 // Function for Debit
 	public void debit(int num1)
 	{
-		//Balance = Total;
 		if(num1 <= Total) {
 			Total -= num1;
 			System.out.println("The updated Balance in your account is:"+Total);
@@ -39,27 +31,17 @@ public class Account
 // Function for Credit
 	public void credit(int num2)
 	{
-		//Total += num2;
 		if((Total+num2) <= Limit) {
 			Total = Total + num2;
 			System.out.println("The updated Balance in your account is:"+Total);
 		}
 		else {
 			System.out.println("The credit limit is exceeded!");
-			//Total -= num2;
 		}
 		
 	}
-	
-//	public void fundTransferDebit(int N1) {
-//		
-//	}
-	
-	
-	
-	
+		
 // Function to Show Balance	
-// Comment
 	public void showBalance()
 	{
 		System.out.println("The Balance in your account is:"+Total);
@@ -68,13 +50,11 @@ public class Account
 	public static void main(String[] args) 
 	{
 		int accCnt=0;
-		//Account acc  = new Account(100000,1234);
-		//Account acc2 = new Account(50000,100000,12345);
 
 		Account[] accountArray;
 		accountArray = new Account[10];
 		Scanner scannerObj1= new Scanner(System.in);
-		//Account acc = new Account();
+		
 		while(true) {
 		System.out.println("Chose an operation");
 		System.out.println("1. Credit");
@@ -84,8 +64,8 @@ public class Account
 		System.out.println("5. Balance");
 						
 		int test=scannerObj1.nextInt();
-		String name, name1, name2, n1, n2, x;
-		int y,z;
+		String name, name1, name2, n2, x;
+		int y,z,n1 = 0;
 		switch(test){
 		case 1:
 			
@@ -96,7 +76,6 @@ public class Account
 					System.out.println("Please enter the amount to be credited:");
 					int creditAmount=scannerObj1.nextInt();
 					accountArray[i].credit(creditAmount);
-					
 					break;
 				}
 			}
@@ -138,33 +117,18 @@ public class Account
 						System.out.println("Please enter the amount to be debited:");
 						y=scannerObj1.nextInt();
 						accountArray[i].debit(y);
-						break;
+						n1 = y;
 					}
 				}
-				
-				for(int i=0; i<accCnt; i++) {
+				for(int i=0; i<accCnt; i++) {    
 					if(accountArray[i].Name.equals(name2)) {
-						System.out.println("Please enter the amount to be credited:");
-						z=scannerObj1.nextInt();
+						z = n1;
 						accountArray[i].credit(z);
 						break;
 					}
 				}
-				
-				
-				
-				//while(!name.equals(name1)) {
-//				System.out.println("Press c for credit and d for debit");
-//					for(int i=0; i<accCnt; i++) {
-//						x = scannerObj1.next();
-//						if(x.equals("CRE")) {
-//							System.out.println("Enter the amount to be credited:");
-//							y = scannerObj1.nextInt();
-//							accountArray[i].credit(y);
-//							break;
-//						}
-//					}
-				}
+			}
+
 			else {
 				System.out.println("There are not enough accounts for this operation!");
 			}
@@ -176,8 +140,6 @@ public class Account
 			name = scannerObj1.next();
 			for(int i=0; i<accCnt; i++) {
 				if(accountArray[i].Name.equals(name)) {
-					//System.out.println("Please enter the amount to be credited:");
-					//int creditAmount=scannerObj1.nextInt();
 					accountArray[i].showBalance();
 					break;
 				}
