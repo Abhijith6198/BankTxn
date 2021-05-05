@@ -29,14 +29,14 @@ public class Account
 		}
 	}
 	
-//	public Boolean debitConf(int n2) {
-//		if(n2 <= Total) {
-//			return true;
-//		}
-//		else {
-//			return false;
-//		}
-//	}
+	public Boolean debitConf(int n2) {
+		if(n2 <= Total) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 
 // Function for Credit
 	public void credit(int num2)
@@ -133,7 +133,7 @@ public class Account
 				for(int i=0; i<accCnt; i++) {    
 					if(accountArray[i].Name.equals(name2)) {
 						z = n1;
-						if(accountArray[i].debit(z)) {
+						if(accountArray[i].debitConf(z)) {
 							accountArray[i].credit(z);
 							break;
 						}
