@@ -75,7 +75,7 @@ public class Account
 						
 		int test=scannerObj1.nextInt();
 		String name, name1, name2;
-		int y,z,n1 = 0;
+		int y = 0,z,n1 = 0;
 		switch(test){
 		case 1:
 			
@@ -127,16 +127,15 @@ public class Account
 						System.out.println("Please enter the amount to be debited:");
 						y=scannerObj1.nextInt();
 						accountArray[i].debit(y);
-						n1 = y;
 					}
 				}
 				for(int i=0; i<accCnt; i++) {    
 					if(accountArray[i].Name.equals(name2)) {
-						z = n1;
-						if(accountArray[i].debitConf(z)) {
-							accountArray[i].credit(z);
-							break;
-						}
+							Boolean debited = accountArray[i].debitConf(y); 
+							if(debited) {
+								accountArray[i].credit(y);
+								break;
+							}
 					}
 				}
 			}
