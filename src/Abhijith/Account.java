@@ -5,9 +5,7 @@ import java.util.Scanner;
 public class Account
 {
 	public String Name;
-	int Id;
-	int Total;
-	int Limit;
+	int Id, Limit, Total, n2;
 	
 	public Account(String name, int Idnum) {
 		Name = name;
@@ -17,23 +15,35 @@ public class Account
 	}
 		
 // Function for Debit
-	public void debit(int num1)
+	public Boolean debit(int num1)
 	{
 		if(num1 <= Total) {
 			Total -= num1;
 			System.out.println("The updated Balance in your account is:"+Total);
+			//return true;
+			return true;
 		}
 		else {
 			System.out.println("Insufficient Balance!");
+			return false;
 		}
 	}
+	
+//	public Boolean debitConf(int n2) {
+//		if(n2 <= Total) {
+//			return true;
+//		}
+//		else {
+//			return false;
+//		}
+//	}
 
 // Function for Credit
 	public void credit(int num2)
 	{
 		if((Total+num2) <= Limit) {
 			Total = Total + num2;
-			System.out.println("The updated Balance in your account is:"+Total);
+			System.out.println("The credited Balance in your account is:"+Total);
 		}
 		else {
 			System.out.println("The credit limit is exceeded!");
@@ -64,7 +74,7 @@ public class Account
 		System.out.println("5. Balance");
 						
 		int test=scannerObj1.nextInt();
-		String name, name1, name2, n2, x;
+		String name, name1, name2;
 		int y,z,n1 = 0;
 		switch(test){
 		case 1:
@@ -123,8 +133,10 @@ public class Account
 				for(int i=0; i<accCnt; i++) {    
 					if(accountArray[i].Name.equals(name2)) {
 						z = n1;
-						accountArray[i].credit(z);
-						break;
+						if(accountArray[i].debit(z)) {
+							accountArray[i].credit(z);
+							break;
+						}
 					}
 				}
 			}
