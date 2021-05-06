@@ -18,7 +18,7 @@ public class Account
 	public Boolean debit(int num1)
 	{
 		if(num1 <= Total) {
-			Total -= num1;
+			Total = Total - num1;
 			System.out.println("The updated Balance in your account is:"+Total);
 			//return true;
 			return true;
@@ -59,10 +59,12 @@ public class Account
 	
 	public static void main(String[] args) 
 	{
-		int accCnt=0;
+		int accCnt=0, txnAmount = 0;
 
 		Account[] accountArray;
+		Account fromAccount = null, toAccount = null;
 		accountArray = new Account[10];
+		
 		Scanner scannerObj1= new Scanner(System.in);
 		
 		while(true) {
@@ -124,22 +126,24 @@ public class Account
 				
 				for(int i=0; i<accCnt; i++) {
 					if(accountArray[i].Name.equals(name1)) {
-						System.out.println("Please enter the amount to be debited:");
-						y=scannerObj1.nextInt();
-						accountArray[i].debit(y);
+						fromAccount = accountArray[i];
 					}
-				}
-				for(int i=0; i<accCnt; i++) {    
 					if(accountArray[i].Name.equals(name2)) {
-							Boolean debited = accountArray[i].debitConf(y); 
-							if(debited) {
-								accountArray[i].credit(y);
-								break;
-							}
-					}
+						toAccount = accountArray[i];
+					}		
+				}
+				System.out.println("Enter the amount to transfer-");
+				txnAmount=scannerObj1.nextInt();
+				Transaction txn = new Transaction(fromAccount, toAccount, txnAmount);
+				if(txn.validateTxn())
+				{
+					txn.performTxn();
+				}
+				else
+				{
+					System.out.println("Insufficient Balance!");
 				}
 			}
-
 			else {
 				System.out.println("There are not enough accounts for this operation!");
 			}
